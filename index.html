@@ -1,0 +1,123 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DearGift Noel 🎄</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(#000428,#004e92);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial;
+    color:white;
+}
+.scene{
+    text-align:center;
+    perspective:1000px;
+    z-index:2;
+}
+.tree{
+    width:0;
+    height:0;
+    border-left:80px solid transparent;
+    border-right:80px solid transparent;
+    border-bottom:140px solid #0f9d58;
+    position:relative;
+    cursor:pointer;
+    animation:spin 6s linear infinite;
+}
+.tree::before{
+    content:"";
+    position:absolute;
+    top:40px;
+    left:-65px;
+    border-left:65px solid transparent;
+    border-right:65px solid transparent;
+    border-bottom:120px solid #0c7c43;
+}
+.tree::after{
+    content:"";
+    position:absolute;
+    top:90px;
+    left:-50px;
+    border-left:50px solid transparent;
+    border-right:50px solid transparent;
+    border-bottom:100px solid #095c32;
+}
+@keyframes spin{
+    from{transform:rotateY(0deg);}
+    to{transform:rotateY(360deg);}
+}
+
+#photo{
+    display:none;
+    width:220px;
+    margin-top:20px;
+    border-radius:18px;
+    box-shadow:0 0 20px rgba(255,255,255,0.6);
+}
+#text{
+    display:none;
+    margin-top:15px;
+    font-size:22px;
+    color:#ffb6c1;
+}
+
+/* Tuyết */
+.snow{
+    position:fixed;
+    top:-10px;
+    color:white;
+    font-size:14px;
+    animation:snowfall linear infinite;
+}
+@keyframes snowfall{
+    to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+    <div class="tree" onclick="gift()"></div>
+    <img id="photo" src="photo.jpg">
+    <div id="text">Chúc em Giáng Sinh vui vẻ 😘</div>
+</div>
+
+<audio id="music" src="noel.mp3" loop></audio>
+
+<script>
+let step=0;
+function gift(){
+    step++;
+    if(step===1){
+        document.getElementById("photo").style.display="block";
+        document.getElementById("music").play();
+    }
+    if(step===2){
+        document.getElementById("text").style.display="block";
+    }
+}
+
+// Tạo tuyết
+for(let i=0;i<40;i++){
+    let snow=document.createElement("div");
+    snow.className="snow";
+    snow.innerHTML="❄";
+    snow.style.left=Math.random()*100+"vw";
+    snow.style.animationDuration=5+Math.random()*5+"s";
+    snow.style.opacity=Math.random();
+    snow.style.fontSize=10+Math.random()*15+"px";
+    document.body.appendChild(snow);
+}
+</script>
+
+</body>d
+</html>
